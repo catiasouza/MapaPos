@@ -55,6 +55,9 @@
                                     <action selector="cadastro:" destination="8Vz-3m-8zr" eventType="touchUpInside" id="6NZ-Sx-VuG"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fSG-TM-Blh">
+                                <rect key="frame" x="76" y="347" width="241" height="128"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zPJ-8e-32m"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -66,17 +69,23 @@
                             <constraint firstItem="LAN-K3-HVM" firstAttribute="leading" secondItem="zPJ-8e-32m" secondAttribute="leading" constant="20" id="LQc-Wb-OB1"/>
                             <constraint firstItem="lTk-wm-bK1" firstAttribute="leading" secondItem="zPJ-8e-32m" secondAttribute="leading" constant="20" id="LpX-vE-Z9i"/>
                             <constraint firstItem="FAx-yC-0a6" firstAttribute="top" secondItem="lTk-wm-bK1" secondAttribute="bottom" constant="26" id="Nrl-bb-sNl"/>
+                            <constraint firstItem="fSG-TM-Blh" firstAttribute="top" secondItem="LAN-K3-HVM" secondAttribute="bottom" constant="57" id="RdH-Rg-ksz"/>
                             <constraint firstItem="FAx-yC-0a6" firstAttribute="top" secondItem="lTk-wm-bK1" secondAttribute="bottom" constant="26" id="XpP-8X-MZi"/>
+                            <constraint firstItem="fSG-TM-Blh" firstAttribute="leading" secondItem="zPJ-8e-32m" secondAttribute="leading" constant="76" id="db0-El-deU"/>
+                            <constraint firstItem="LZ9-gg-wvm" firstAttribute="top" secondItem="fSG-TM-Blh" secondAttribute="bottom" constant="45" id="hcM-mS-3Yc"/>
                             <constraint firstItem="FAx-yC-0a6" firstAttribute="leading" secondItem="zPJ-8e-32m" secondAttribute="leading" constant="20" id="ifo-vO-D7t"/>
                             <constraint firstItem="LAN-K3-HVM" firstAttribute="top" secondItem="FAx-yC-0a6" secondAttribute="bottom" constant="20" id="l1m-pO-qxN"/>
                             <constraint firstItem="zPJ-8e-32m" firstAttribute="trailing" secondItem="FAx-yC-0a6" secondAttribute="trailing" constant="20" id="lUl-bg-cds"/>
                             <constraint firstItem="LZ9-gg-wvm" firstAttribute="leading" secondItem="zPJ-8e-32m" secondAttribute="leading" constant="30" id="qHT-ZM-8Rl"/>
                             <constraint firstItem="LZ9-gg-wvm" firstAttribute="top" secondItem="LAN-K3-HVM" secondAttribute="bottom" constant="230" id="qbv-xj-DNa"/>
+                            <constraint firstItem="fSG-TM-Blh" firstAttribute="centerX" secondItem="LAN-K3-HVM" secondAttribute="centerX" id="yb1-LO-qeI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cadastro" largeTitleDisplayMode="never" id="wdh-P6-9Vb"/>
                     <connections>
+                        <outlet property="botao" destination="LZ9-gg-wvm" id="9iZ-99-xne"/>
                         <outlet property="end" destination="FAx-yC-0a6" id="Kdw-ER-usW"/>
+                        <outlet property="imageCidade" destination="fSG-TM-Blh" id="aFJ-2L-UDz"/>
                         <outlet property="name" destination="lTk-wm-bK1" id="cEL-je-G7h"/>
                         <outlet property="problema" destination="LAN-K3-HVM" id="t5N-gc-cw5"/>
                     </connections>

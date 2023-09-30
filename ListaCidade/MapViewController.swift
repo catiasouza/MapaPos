@@ -27,7 +27,6 @@ class MapViewController: UIViewController {
         location.desiredAccuracy = kCLLocationAccuracyBest
         location.requestWhenInUseAuthorization()
     }
-   
 
 }
 extension MapViewController: MKMapViewDelegate {

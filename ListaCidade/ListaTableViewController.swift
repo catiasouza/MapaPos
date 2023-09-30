@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class ListaTableViewController: UITableViewController {
-    var fetchResult: NSFetchedResultsController<ListaC>!
+    var fetchResultL: NSFetchRequestResult<Lista>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,19 +17,20 @@ class ListaTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? ViewController, let indexPath = tableView.indexPathForSelectedRow {
-            controller.lista = fetchResult.object(at: indexPath)
+        if let controller = segue.destination as? ViewController,
+           let indexPath = tableView.indexPathForSelectedRow {
+            controller.lista = fetchResultL.object(at: indexPath)
             
         }
     }
     func load() {
-        let fetchRequest: NSFetchRequest<ListaC> = ListaC.fetchRequest()
+        let fetchRequest: NSFetchRequest<Lista> = Lista.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "desc", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        fetchResult = NSFetchedResultsController(fetchRequest: fetchRequest as! NSFetchRequest<ListaC>, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchResult.delegate = self
-        try? fetchResult.performFetch()
+        fetchResultL = NSFetchedResultsController(fetchRequest: fetchResultL as! NSFetchRequest<Lista>, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultL.delegate = self
+        try? fetchResultL.performFetch()
     }
     
     // MARK: - Table view data source
@@ -39,7 +40,7 @@ class ListaTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchResult.fetchedObjects?.count ?? 0
+        return fetchResultL.fetchedObjects?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,10 +48,26 @@ class ListaTableViewController: UITableViewController {
             return UITableViewCell()
             
         }
-        let lista = fetchResult.object(at: indexPath)
+        let lista = fetchResultL.object(at: indexPath)
         cell.configureCell(lista)
         return cell
     }
+    
+   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let lista = fetchResultL.object(at: indexPath)
+            context.delete(lista)
+            tableView.beginUpdates()
+            try? context.save()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
 }
 extension ListaTableViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {

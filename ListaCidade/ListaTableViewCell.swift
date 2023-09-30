@@ -9,7 +9,6 @@ import UIKit
 
 class ListaTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var data: UILabel!
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var nome: UILabel!
@@ -25,9 +24,11 @@ class ListaTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func configureCell(_ mapa: ListaC) {
+    func configureCell(_ mapa: Lista) {
         desc.text = mapa.desc
         data.text = mapa.end
         nome.text = mapa.nome
+        
+        imageView?.image = UIImage(named: data.mapa.image)
     }
 }

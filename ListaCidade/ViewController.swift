@@ -9,14 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var geral: UILabel!
     @IBOutlet weak var descricao: UILabel!
     @IBOutlet weak var endereco: UILabel!
     @IBOutlet weak var name: UILabel!
     
-    var lista: ListaC?
+    var lista: Lista?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +26,9 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         prepareScreen()
     }
+    func loadLista() {
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? ViewController {
@@ -35,7 +37,7 @@ class ViewController: UIViewController {
     }
     func prepareScreen(){
         if let lista = lista {
-           // image.image = UIImage(named: "mapa")
+            image.image = UIImage(named: lista.image)
             geral.text = lista.desc
             descricao.text = lista.desc
             name.text = lista.nome
